@@ -198,7 +198,6 @@ module.exports = function (lasso, pluginConfig) {
         if (minified.length && !minified.endsWith(';')) {
           minified += ';'
         }
-        console.log(minified)
         return minified
       } catch (e) {
         if (e && e.line) {
@@ -230,8 +229,6 @@ module.exports = function (lasso, pluginConfig) {
     }
 
     var result = csso.minify(src, options)
-
-    console.log(result)
 
     return result
   }
