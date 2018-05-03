@@ -230,28 +230,26 @@ module.exports = function (lasso, pluginConfig) {
 
     var result = csso.minify(src, options)
 
-    return result
+    return result.css
   }
 
-  module.exports = function (lasso, pluginConfig) {
-    lasso.addTransform({
+  lasso.addTransform({
 
-      contentType: 'css',
+    contentType: 'css',
 
-      name: `${module.id}-csso`,
+    name: `${module.id}-csso`,
 
-      stream: false,
+    stream: false,
 
-      transform: function (code, lassoContext) {
-        if (!cssMinifyEnabled || (pluginConfig.inlineOnly === true && !isInline(lassoContext))) {
-          // Skip minification when we are not minifying inline code
-          return code
-        }
-
-        var minified = minifyCSS(code, cssMinifyConfig)
-
-        return minified
+    transform: function (code, lassoContext) {
+      if (!cssMinifyEnabled || (pluginConfig.inlineOnly === true && !isInline(lassoContext))) {
+        // Skip minification when we are not minifying inline code
+        return code
       }
-    })
-  }
+
+      var minified = minifyCSS(code, cssMinifyConfig)
+
+      return minified
+    }
+  })
 }
