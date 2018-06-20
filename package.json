@@ -12,22 +12,22 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ianvonholt/lasso-babel-minify.git"
+    "url": "https://github.com/ianvonholt/lasso-minify.git"
   },
   "scripts": {
     "test": "node_modules/.bin/jshint *.js"
   },
   "dependencies": {
     "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.6.1",
-    "csso": "^3.5.0",
+    "babel-preset-env": "^1.7.0",
+    "csso": "^3.5.1",
     "lasso-caching-fs": "^1.0.2",
     "lasso-package-root": "^1.0.1",
     "strip-json-comments": "^2.0.1",
     "uglify-es": "^3.3.9"
   },
   "devDependencies": {
-    "mocha": "~5.1.1",
+    "mocha": "~5.2.0",
     "chai": "~4.1.2",
     "jshint": "^2.9.5"
   },
