@@ -55,7 +55,7 @@ module.exports = function (lasso, pluginConfig) {
   // Grab our configuration for babel
   let babelConfig = pluginConfig.babel ? pluginConfig.babel.config || null : null
   // Babel extensions
-  let babelExtensions = babelConfig ? babelConfig.extensions : ['.js', '.es6']
+  let babelExtensions = babelConfig ? babelConfig.extensions : ['.js', '.es6', '.marko']
 
   babelExtensions = babelExtensions.reduce((lookup, ext) => {
     if (ext.charAt(0) !== '.') {
@@ -69,8 +69,6 @@ module.exports = function (lasso, pluginConfig) {
   lasso.addTransform({
     id: __filename,
 
-    contentType: 'js',
-
     name: `${module.id}-babel`,
 
     stream: false,
@@ -80,7 +78,7 @@ module.exports = function (lasso, pluginConfig) {
       if (!babelEnabled) {
         return code
       } else {
-        let filename = lassoContext.filename
+        let filename = lassoContext.filename || lassoContext.path
 
         if (!filename || !babelExtensions.hasOwnProperty(path.extname(filename))) {
           // This shouldn't be the case
@@ -93,7 +91,6 @@ module.exports = function (lasso, pluginConfig) {
         let rootPackage = lassoPackageRoot.getRootPackage(path.dirname(filename))
 
         if (!babelOptions) {
-
           while (true) {
             let babelrcPath = path.join(curDir, '.babelrc')
             let babelrcBrowserPath = path.join(curDir, '.babelrc-browser')
